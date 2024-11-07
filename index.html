@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>飞机大战</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a, #000);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        canvas {
+            border: 1px solid #333;
+            display: block;
+            margin: 20px auto;
+            background: #000;
+        }
+        #gameMenu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #startButton {
+            background: #4488ff;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+        #startButton:hover {
+            background: #2266dd;
+        }
+        .instructions {
+            max-width: 480px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        .instructions h2 {
+            color: #4488ff;
+            margin-top: 0;
+        }
+        .instructions ul {
+            text-align: left;
+            line-height: 1.6;
+        }
+        #resources {
+            display: none;
+        }
+        #mobileControls {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+        }
+        
+        #mobileControls button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 24px;
+            touch-action: manipulation;
+        }
+        
+        #shootBtn {
+            background: rgba(255, 68, 68, 0.5) !important;
+        }
+        
+        @media (max-width: 768px) {
+            .keyboard-controls {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameMenu">
+        <h1>飞机大战</h1>
+        <div class="instructions">
+            <h2>游戏说明</h2>
+            <ul>
+                <li>使用 ← → 方向键控制飞机左右移动</li>
+                <li>按空格键发射子弹</li>
+                <li>击中不同类型敌机得分不同：
+                    <ul>
+                        <li>小型敌机：100分</li>
+                        <li>中型敌机：300分</li>
+                        <li>大型敌机：500分</li>
+                    </ul>
+                </li>
+                <li>初始生命值为3，被敌机撞击后减少1点生命值</li>
+                <li>被击中后有2秒无敌时间</li>
+                <li>生命值为0时游戏结束</li>
+            </ul>
+        </div>
+        <button id="startButton">开始游戏</button>
+    </div>
+    
+    <canvas id="gameCanvas" width="480" height="640"></canvas>
+    
+    <div id="resources">
+        <audio id="shootSound" src="sounds/shoot.mp3"></audio>
+        <audio id="explosionSound" src="sounds/explosion.mp3"></audio>
+        <audio id="bgm" src="sounds/bgm.mp3" loop></audio>
+    </div>
+    <div id="mobileControls" style="display: none;">
+        <button id="leftBtn">←</button>
+        <button id="rightBtn">→</button>
+        <button id="shootBtn">发射</button>
+    </div>
+    <script src="js/game.js"></script>
+</body>
+</html> 
